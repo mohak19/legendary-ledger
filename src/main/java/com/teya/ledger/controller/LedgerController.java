@@ -1,8 +1,10 @@
 package com.teya.ledger.controller;
 
 import com.teya.ledger.dto.MovementRequest;
+import com.teya.ledger.dto.TransactionResponse;
 import com.teya.ledger.service.LedgerService;
 import com.teya.ledger.model.Transaction;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,9 +28,10 @@ public class LedgerController {
     }
 
     @PostMapping("/movements")
-    public ResponseEntity<Transaction> recordMovement(@RequestBody MovementRequest request) {
+    public ResponseEntity<TransactionResponse> recordMovement(@Valid @RequestBody MovementRequest request) {
         Transaction tx = ledgerService.recordMovement(request.type(), request.amount());
-        return ResponseEntity.status(HttpStatus.CREATED).body(tx);
+        TransactionResponse response = new TransactionResponse(tx.id(), tx.type(), tx.amount(), tx.timestamp());
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @GetMapping("/balance")

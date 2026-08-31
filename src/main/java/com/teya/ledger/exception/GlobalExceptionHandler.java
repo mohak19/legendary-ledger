@@ -14,7 +14,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseEntity<Map<String, String>> handleInvalidJsonInput(HttpMessageNotReadableException ex) {
         return ResponseEntity.badRequest().body(Map.of(
-                "error", "Invalid transaction type. Allowed values are: DEPOSIT, WITHDRAWAL"
+                "error", "Invalid input. Please ensure the request body is correctly formatted and all required fields are provided with valid values."
         ));
     }
 
@@ -29,7 +29,7 @@ public class GlobalExceptionHandler {
     // Handles business state constraints (e.g., Overdraft / Insufficient Balance)
     @ExceptionHandler(IllegalStateException.class)
     public ResponseEntity<Map<String, String>> handleIllegalState(IllegalStateException ex) {
-        return ResponseEntity.badRequest().body(Map.of(
+        return ResponseEntity.status(422).body(Map.of(
                 "error", ex.getMessage()
         ));
     }
