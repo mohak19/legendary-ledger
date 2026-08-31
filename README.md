@@ -134,7 +134,7 @@ The application uses a centralized `GlobalExceptionHandler` to provide consisten
 
 | Exception | Status | Response |
 |-----------|--------|----------|
-| Invalid enum value (e.g., "BURRITO") | 400 | "Invalid transaction type. Allowed values are: DEPOSIT, WITHDRAWAL" |
+| Invalid enum value (e.g., "BURRITO") | 400 | "Invalid input. Please ensure the request body is correctly formatted and all required fields are provided with valid values." |
 | Null or negative amount | 400 | "Amount must be greater than zero" |
 | Withdrawal exceeds balance | 422 | "Insufficient balance" |
 | Unexpected error | 500 | "An unexpected internal server error occurred." |
