@@ -34,17 +34,19 @@ The Ledger Application is a lightweight, thread-safe service for managing financ
 ### Clone & Build
 
 ```bash
-# Clone the repository (if applicable)
+# Clone the repository
+cd legendary-ledger
 
 # Build the project
 mvn clean compile
+```
 
 ### Run the Application
 
 ```bash
 # Using Maven
 mvn spring-boot:run
-
+```
 The application will start on **http://localhost:8080**.
 
 ### Run Tests
@@ -52,7 +54,7 @@ The application will start on **http://localhost:8080**.
 ```bash
 # Run all tests
 mvn clean test
-
+```
 
 ## API Documentation
 
@@ -125,16 +127,6 @@ GET /api/ledger/history
 ]
 ```
 
-## Error Handling
-
-The application uses a centralized `GlobalExceptionHandler` to provide consistent error responses:
-
-| Exception | Status | Response |
-|-----------|--------|----------|
-| Invalid enum value (e.g., "BURRITO") | 400 | "Invalid input. Please ensure the request body is correctly formatted and all required fields are provided with valid values." |
-| Null or negative amount | 400 | "Amount must be greater than zero" |
-| Withdrawal exceeds balance | 422 | "Insufficient balance" |
-| Unexpected error | 500 | "An unexpected internal server error occurred." |
 
 ## Assumptions and Design Decisions
 
