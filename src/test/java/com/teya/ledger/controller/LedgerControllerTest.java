@@ -80,7 +80,7 @@ class LedgerControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(invalidJsonPayload))
                 .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.error").value("Invalid transaction type. Allowed values are: DEPOSIT, WITHDRAWAL"));
+                .andExpect(jsonPath("$.error").value("Invalid input. Please ensure the request body is correctly formatted and all required fields are provided with valid values."));
 
         // Verify the service was never even called because Jackson blocked the bad request at the web layer
         Mockito.verifyNoInteractions(ledgerService);
