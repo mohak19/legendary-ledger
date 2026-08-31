@@ -35,7 +35,6 @@ The Ledger Application is a lightweight, thread-safe service for managing financ
 
 ```bash
 # Clone the repository (if applicable)
-cd ledger
 
 # Build the project
 mvn clean compile
@@ -57,10 +56,8 @@ mvn clean test
 
 ## API Documentation
 
-### Base URL
-```
+### Base URL 
 http://localhost:8080/api/ledger
-```
 
 ### Endpoints
 
